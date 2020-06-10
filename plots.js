@@ -5,38 +5,13 @@ var message, x;
 message = document.getElementById("map");
 //message.innerHTML = "";
 
-
-
-
-
-
 d3.json(queryUrl, function (error, data) {
 
-
-    try {
-
-   for(var i=1 ; i < 9 ; i++)
-   {  var result = data[i]
-  for(var i=1 ; i < 2000 ; i++)
-
-  {
-   var d = result.Year;
-    
-   
-   console.log(d)
-   };
-
-  }
-
- 
-
-}
-
-catch (error) {
-    // statements to handle any exceptions
-    message.innerHTML = "Input is " + error; // pass exception object to error handler
-  }
-    
-
+  for(var i=1 ; i < 5 ; i++)
+  {  var result = data[i]
+      console.log(result.Country)
+      console.log(result.Total)
+      console.log(result.Year)
+  }    
 });
 
