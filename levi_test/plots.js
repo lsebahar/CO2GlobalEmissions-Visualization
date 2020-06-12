@@ -1,6 +1,9 @@
 
+
+// NEW, full query URL. Previous version was just a sample of the dataset
 var queryUrl = 'https://pkgstore.datahub.io/core/co2-fossil-by-nation/fossil-fuel-co2-emissions-by-nation_json/data/2b4874bb29c461a614e92773956ad573/fossil-fuel-co2-emissions-by-nation_json.json'
 
+// Should be the drop down form
 var countryValue = d3.select("selDataset");
 var typeValue = d3.select("emissiontype");
 
@@ -9,44 +12,51 @@ var typeValue = d3.select("emissiontype");
 // is this needed? Displays all names in drop down
 // d3.json(queryUrl).then(function(data){
   
-    
-//   var names = data.names;
-//   names.forEach((name, i) => {
-//       var menuSelection = menuValue.append("option");
-//       menuSelection.text(name);
-//       menuSelection.attr("value",`${i}`)});
-//  });
-
-// Make year a value, not string
-// sort values
 // 1 '=' sets year to zero, 2 is for match, 3 is for type
 
+// This is the inital Bar chart
 function OpeningBar() {
   d3.json(queryUrl).then(function(data){
+
+    // Console log to check that data is pulling
     console.log(data.country);
     function filteryear(movie) {
+      // Using == operator condition to filter year
       return movie.Year == 2014;}
 
-    function filtertotal(num) {
+    // Filtering by total to have more manageable dataset (website does this too)
+      function filtertotal(num) {
       return num.Total > 50000;}
 
+    // Using both filter functions here
     var filteredyear = data.filter(filteryear).filter(filtertotal);
+    
+    // Orders the data from lowest to highest
     var sData = filteredyear.slice().sort((a,b) => d3.ascending(a.Total, b.Total));
     console.log(sData);
+    
+    // Collecting Values for X axis
     var chartValues = sData.map(x => x.Total);
+    
+    // Collecting Country names for Y Axis
     var countriesList = sData.map(x => x.Country);
-      var reversedValues = chartValues.reverse();
-      console.log(reversedValues);
-
-      var yLabels = countriesList.reverse();
-
       
-      var trace = {
-          x: reversedValues,
-          y: yLabels,
-          type: "bar",
-          orientation: 'h',
-          text: yLabels
+    // Reversing values to get ascending order
+    var reversedValues = chartValues.reverse();
+    var yLabels = countriesList.reverse();
+
+    // Console log to check reversal works
+    console.log(reversedValues);
+
+  
+    var trace = {
+      x: reversedValues,
+      y: yLabels,
+      type: "bar",
+
+      // Don't forget horizontal orientation!
+      orientation: 'h',
+      text: yLabels
           
       };
 
@@ -79,6 +89,7 @@ function CreateBar() {
 
     var countriesList = sData.map(x => x.Country);
     
+    // This tells JS to use the column the users selects (not working)
     if (typeSelection == "Total") {
       var typeValues = sData.map(x => x.Total);
     } else if (typeSelection == "Solid Fuel") {
@@ -122,12 +133,23 @@ function CreateBar() {
   })
 };
 
+// Function to update all charts
 function updateCharts() {
   CreateBar();
 };
 
+// Event listener (not working)
 d3.selectAll("emissiontype").on("change", updateCharts);
 
+
+
+
+
+
+
+
+
+////////// OLD CODE ///////////
 
 // Call updatePlotly() when a change takes place to the DOM
 // d3.selectAll("#selDataset").on("change", updatePlotly);
