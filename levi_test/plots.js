@@ -1,7 +1,8 @@
 
 var queryUrl = 'https://pkgstore.datahub.io/core/co2-fossil-by-nation/fossil-fuel-co2-emissions-by-nation_json/data/2b4874bb29c461a614e92773956ad573/fossil-fuel-co2-emissions-by-nation_json.json'
 
-//var menuValue = D3.select("selDataset");
+var countryValue = D3.select("selDataset");
+var typeValue = D3.select("emissiontype");
 
 // Display the default plot
 
@@ -62,7 +63,50 @@ function OpeningBar() {
 
 OpeningBar();
 
+// Making bar chart interactive
 
+function CreateBar() {
+  d3.json("queryUrl").then(function(data){
+    var typeSelection = typeValue.property("value");
+
+    function filteryear(movie) {
+      return movie.Year == 2014;}
+
+    function filtertotal(num) {
+      return num.Total > 50000;}
+
+    var filteredyear = data.filter(filteryear).filter(filtertotal);
+    var sData = filteredyear.slice().sort((a,b) => d3.ascending(a.Total, b.Total));
+    console.log(sData);
+    var chartValues = sData.map(x => x.Total);
+    var countriesList = sData.map(x => x.Country);
+      var reversedValues = chartValues.reverse();
+      console.log(reversedValues);
+
+      var yLabels = countriesList.reverse();
+
+      
+      var trace = {
+          x: reversedValues,
+          y: yLabels,
+          type: "bar",
+          orientation: 'h',
+          text: yLabels
+          
+      };
+
+      traceData = [trace];
+
+      var layout = {
+          autosize: true,
+          title: "2014 Total Emissions by Country",
+          xaxis: { title: "CO2 Emissions in Millions"},
+          yaxis: { title: "Country"}
+      };
+
+      Plotly.newPlot("bar", traceData,layout)
+  })
+};
 
 
 // Call updatePlotly() when a change takes place to the DOM
