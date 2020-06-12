@@ -14,13 +14,15 @@ d3.json(queryUrl, function (data) {
   
   
   var filteredyear = data.filter(filteryear);
-
+  
   console.log(filteredyear)
+  
+
 
   var trace1 = {
-    x: filteredyear.Total,
-    y: filteredyear.Country,
-    text: filteredyear.Country,
+    x: filteredyear.map(row => row.Total),
+    y: filteredyear.map(row => row.Country),
+    text: filteredyear.map(row => row.Country),
     name: "co2 emiision by all countrys",
     type: "bar",
     orientation: "h"
@@ -28,32 +30,36 @@ d3.json(queryUrl, function (data) {
 
 
 
-
   var bardata = [trace1];
   
-      //layout
-      var layout1 = {
+      
+
+  var layout1 = {
         title: "countries emission in 2014!",
-        //height: 600,
-    //width: 800,
+        height: 800,
+       width: 1200,
         margin: {
           l: 75,
          r: 75,
           t: 75,
           b: 50
         }
+      }
 
-     
-      };
-  
-      // Render the plot to the div tag with id "bar"
+
+       // Render the plot to the div tag with id "bar"
       Plotly.newPlot("gauge", bardata, layout1);
+
+
+      });
+  
+      
   
 
-
-});
 
 }
+
+
 
 
 
@@ -104,13 +110,17 @@ var dropdownMenu = d3.select("#selDataset");
 var dataset = dropdownMenu.property("value");
 
 
-if (dataset === 'USA') {
+var dropdownMenu = d3.select("#emissiontype");
+// Assign the value of the dropdown menu option to a variable
+var dataset2 = dropdownMenu.property("value");
+
+if (dataset === "USA"  ) {
 
 
 
 var trace1 = {
   x: filteredMovies.map(row => row.Year),
-  y: filteredMovies.map(val => val.Total),
+  y: filteredMovies.map(val => val.SolidFuel),
   text: data.map(row => row.Country),
   type: "scatter",
   mode :"lines",
