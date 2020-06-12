@@ -76,22 +76,36 @@ function CreateBar() {
 
     var filteredyear = data.filter(filteryear).filter(filtertotal);
     var sData = filteredyear.slice().sort((a,b) => d3.ascending(a.Total, b.Total));
-    console.log(sData);
-    var typeValues = sData.map(x => x.typeSelection);
+
     var countriesList = sData.map(x => x.Country);
-      
+    
+    if (typeSelection == "Total") {
+      var typeValues = sData.map(x => x.Total);
+    } else if (typeSelection == "Solid Fuel") {
+      var typeValues = sData.map(x => x.myTextOptions["Solid Fuel"]);
+    } else if (typeSelection == "Liquid Fuel") {
+      var typeValues = sData.map(x => x.myTextOptions["Liquid Fuel"]);
+    } else if (typeSelection == "Gas Fuel") {
+      var typeValues = sData.map(x => x.myTextOptions["Gas Fuel"]);
+    } else if (typeSelection == "Cement") {
+      var typeValues = sData.map(x => x.Cement);
+    } else if (typeSelection == "Gas Flaring") {
+      var typeValues = sData.map(x => x.myTextOptions["Gas Flaring"]);
+    } else {
+      var typeValues = sData.map(x => x.myTextOptions["Per Capital"])
+    };
+    
     var reversedValues = typeValues.reverse();
-      console.log(reversedValues);
 
-      var yLabels = countriesList.reverse();
+    var yLabels = countriesList.reverse();
 
       
-      var trace = {
-          x: reversedValues,
-          y: yLabels,
-          type: "bar",
-          orientation: 'h',
-          text: yLabels
+    var trace = {
+      x: reversedValues,
+      y: yLabels,
+      type: "bar",
+      orientation: 'h',
+      text: yLabels
           
       };
 
@@ -107,6 +121,12 @@ function CreateBar() {
       Plotly.newPlot("bar", traceData,layout)
   })
 };
+
+function updateCharts() {
+  CreateBar();
+};
+
+d3.selectAll("emissiontype").on("change", updateCharts);
 
 
 // Call updatePlotly() when a change takes place to the DOM
