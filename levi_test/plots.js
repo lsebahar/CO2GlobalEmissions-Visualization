@@ -1,8 +1,8 @@
 
 var queryUrl = 'https://pkgstore.datahub.io/core/co2-fossil-by-nation/fossil-fuel-co2-emissions-by-nation_json/data/2b4874bb29c461a614e92773956ad573/fossil-fuel-co2-emissions-by-nation_json.json'
 
-var countryValue = D3.select("selDataset");
-var typeValue = D3.select("emissiontype");
+var countryValue = d3.select("selDataset");
+var typeValue = d3.select("emissiontype");
 
 // Display the default plot
 
@@ -55,7 +55,7 @@ function OpeningBar() {
       var layout = {
           autosize: true,
           title: "2014 Total Emissions by Country",
-          xaxis: { title: "CO2 Emissions in Millions"},
+          xaxis: { title: "CO2 Emissions in Metric Tons (Thousands)"},
           yaxis: { title: "Country"}
       };
 
@@ -64,7 +64,6 @@ function OpeningBar() {
 OpeningBar();
 
 // Making bar chart interactive
-
 function CreateBar() {
   d3.json("queryUrl").then(function(data){
     var typeSelection = typeValue.property("value");
@@ -78,9 +77,10 @@ function CreateBar() {
     var filteredyear = data.filter(filteryear).filter(filtertotal);
     var sData = filteredyear.slice().sort((a,b) => d3.ascending(a.Total, b.Total));
     console.log(sData);
-    var chartValues = sData.map(x => x.Total);
+    var typeValues = sData.map(x => x.typeSelection);
     var countriesList = sData.map(x => x.Country);
-      var reversedValues = chartValues.reverse();
+      
+    var reversedValues = typeValues.reverse();
       console.log(reversedValues);
 
       var yLabels = countriesList.reverse();
@@ -100,7 +100,7 @@ function CreateBar() {
       var layout = {
           autosize: true,
           title: "2014 Total Emissions by Country",
-          xaxis: { title: "CO2 Emissions in Millions"},
+          xaxis: { title: "CO2 Emissions in Metric Tons (Thousands"},
           yaxis: { title: "Country"}
       };
 
