@@ -4,8 +4,8 @@
 var queryUrl = 'https://pkgstore.datahub.io/core/co2-fossil-by-nation/fossil-fuel-co2-emissions-by-nation_json/data/2b4874bb29c461a614e92773956ad573/fossil-fuel-co2-emissions-by-nation_json.json'
 
 // Should be the drop down form
-var countryValue = d3.select("selDataset");
-var typeValue = d3.select("emissiontype");
+var countryValue = d3.select("#selDataset");
+var typeValue = d3.select("#emissiontype");
 
 // Display the default plot
 
@@ -46,7 +46,7 @@ function OpeningBar() {
     var yLabels = countriesList.reverse();
 
     // Console log to check reversal works
-    console.log(reversedValues);
+    //console.log(reversedValues);
 
   
     var trace = {
@@ -75,7 +75,7 @@ OpeningBar();
 
 // Making bar chart interactive
 function CreateBar() {
-  d3.json("queryUrl").then(function(data){
+  d3.json(queryUrl).then(function(data){
     var typeSelection = typeValue.property("value");
 
     function filteryear(movie) {
@@ -86,25 +86,147 @@ function CreateBar() {
 
     var filteredyear = data.filter(filteryear).filter(filtertotal);
     var sData = filteredyear.slice().sort((a,b) => d3.ascending(a.Total, b.Total));
+   
 
-    var countriesList = sData.map(x => x.Country);
     
+    var countriesList = sData.map(x => x.Country);
+
+      console.log(sData)
+      
+
+     //console.log(Object.keys(sData[0]));
+
+     //console.log(typeSelection);
+
     // This tells JS to use the column the users selects (not working)
     if (typeSelection == "Total") {
-      var typeValues = sData.map(x => x.Total);
+      var typeValues = (sData.map(x => x.Total));
     } else if (typeSelection == "Solid Fuel") {
-      var typeValues = sData.map(x => x.myTextOptions["Solid Fuel"]);
-    } else if (typeSelection == "Liquid Fuel") {
-      var typeValues = sData.map(x => x.myTextOptions["Liquid Fuel"]);
+      //var typeValues = (sData.map(x => x.myTextOptions["Solid Fuel"]));
+     
+      //var solidkey = Object.keys("Solid Fuel");
+      //var typeValues = solidkey.values();
+
+       //var demoKeys = Object.keys(sData[0]);
+      //var typeValues = Object.values(sData[7]);
+     
+      // loop over values
+        // for  (let value of demoKeys) {
+   
+           
+
+     var typeValues = [];
+
+     sData.forEach((recipe) => {
+ 
+      
+      //console.log( recipe["Solid Fuel"]);
+     
+
+      // Iterate through each key and value
+     Object.entries(recipe).forEach(([key, value]) => {
+    
+        // Use the key to determine which array to push the value to
+
+        //console.log(Object.keys(recipe));
+        if (key == "Solid Fuel" ){
+
+         
+         typeValues.push(value)
+      }
+        
+       });
+       
+    });
+    
+     
+     
+       
+
+    } else if (typeSelection ==="Liquid Fuel") {
+     
+      var typeValues = [];
+
+     sData.forEach((recipe) => {
+ 
+      
+     Object.entries(recipe).forEach(([key, value]) => {
+    
+      
+        if (key == "Liquid Fuel" ){
+
+         
+         typeValues.push(value)
+      }
+        
+       });
+       
+    });
+    
+
+
+      
     } else if (typeSelection == "Gas Fuel") {
-      var typeValues = sData.map(x => x.myTextOptions["Gas Fuel"]);
+
+      var typeValues = [];
+      sData.forEach((recipe) => {
+      Object.entries(recipe).forEach(([key, value]) => {
+       if (key == "Gas Fuel" ){
+          typeValues.push(value)
+       }
+         
+        });
+        
+     });
+
+      
     } else if (typeSelection == "Cement") {
-      var typeValues = sData.map(x => x.Cement);
+      var typeValues = (sData.map(x => x.Cement));
     } else if (typeSelection == "Gas Flaring") {
-      var typeValues = sData.map(x => x.myTextOptions["Gas Flaring"]);
-    } else {
-      var typeValues = sData.map(x => x.myTextOptions["Per Capital"])
+
+      var typeValues = [];
+
+      sData.forEach((recipe) => {
+  
+       
+      Object.entries(recipe).forEach(([key, value]) => {
+     
+       
+         if (key == "Gas Flaring" ){
+ 
+          
+          typeValues.push(value)
+       }
+         
+        });
+        
+     });
+     
+
+
+
+      
+    } else if(typeSelection == "Per Capita") {
+      var typeValues = [];
+
+     sData.forEach((recipe) => {
+ 
+      
+     Object.entries(recipe).forEach(([key, value]) => {
+    
+      
+        if (key == "Per Capita" ){
+
+         
+         typeValues.push(value)
+      }
+        
+       });
+       
+    });
+    
     };
+
     
     var reversedValues = typeValues.reverse();
 
@@ -139,7 +261,7 @@ function updateCharts() {
 };
 
 // Event listener (not working)
-d3.selectAll("emissiontype").on("change", updateCharts);
+d3.selectAll("#emissiontype").on("change", CreateBar);
 
 
 
@@ -313,3 +435,9 @@ d3.selectAll("emissiontype").on("change", updateCharts);
 //       Plotly.newPlot("gauge", bardata, layout1);
 //       });
 // }
+
+
+
+
+
+
