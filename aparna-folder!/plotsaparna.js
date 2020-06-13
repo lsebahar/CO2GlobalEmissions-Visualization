@@ -265,129 +265,77 @@ d3.selectAll("#emissiontype").on("change", CreateBar);
 
 
 
+function buildPlot() {
+d3.json(queryUrl, function (data) {
+
+function filtercoutryusa(movie) {
+
+  return movie.Country = "USA";
+}
+
+var filteredMovies = data.filter(filtercoutryusa);
+
+function filtercoutrychina(movie) {
+  return movie.Country = "China";
+ }
 
 
+var filteredMovieschina = data.filter(filtercoutrychina);
 
 
+var trace1 = {
+ x: filteredMovies.map(row => row.Year),
+ y: filteredMovies.map(val => val.SolidFuel),
+ text: data.map(row => row.Country),
+ type: "line",
+ mode :"lines",
+ name: "usa carbon emiision by all years",
+
+ line: {
+  color: "#17BECF"
+}
+
+// boxpoints: "all"
+ };
+
+var trace2 = {
+ x: filteredMovieschina.map(row => row.Year),
+ y: filteredMovieschina.map(row => row.Total),
+ text: filteredMovieschina.map(row => row.Country),
+name: "china carbon emissions by all years",
+ type: "bar",
+ mode :"lines"
+ };
+
+ var data =[trace1,trace2];
+ 
+var layout = {
+ title: "carbon emission by USA",
+xaxis: { title: "Year" },
+yaxis: { title: "total pollution co2 emission" },
 
 
-////////// OLD CODE ///////////
-
-// Call updatePlotly() when a change takes place to the DOM
-// d3.selectAll("#selDataset").on("change", updatePlotly);
-
-// // This function is called when a dropdown menu item is selected
-// function updatePlotly() {
-  
-
-
-
-// d3.json(queryUrl, function (data) {
-
-
-  
-
-//    //for(var i=1 ; i < 17233 ; i++)
-//    //{  
-     
-//     //var result = data[i]
-  
-//    //var year1 = result.year; 
-//    //var country1 = result.Country;
-//    //var total1 = result.Total;
-
-// //var country1 = ["usa","uk",.....]
-
-// function filtercoutryusa(movie) {
-//   return movie.Country = "USA";
-// }
-
-
-// var filteredMovies = data.filter(filtercoutryusa);
-
-// function filtercoutrychina(movie) {
-//   return movie.Country = "China";
-// }
-
-
-// var filteredMovieschina = data.filter(filtercoutrychina);
-
-
-// // Use D3 to select the dropdown menu
-// var dropdownMenu = d3.select("#selDataset");
-// // Assign the value of the dropdown menu option to a variable
-// var dataset = dropdownMenu.property("value");
-
-
-// var dropdownMenu = d3.select("#emissiontype");
-// // Assign the value of the dropdown menu option to a variable
-// var dataset2 = dropdownMenu.property("value");
-
-// if (dataset === "USA"  ) {
-
-
-
-// var trace1 = {
-//   x: filteredMovies.map(row => row.Year),
-//   y: filteredMovies.map(val => val.SolidFuel),
-//   text: data.map(row => row.Country),
-//   type: "scatter",
-//   mode :"lines",
-//   name: "usa carbon emiision by all years",
-
-//   line: {
-//     color: "#17BECF"
-//   }
-
-//  // boxpoints: "all"
-// };
-
-
-// var data = [trace1];
-
-// }
-
-
-// if (dataset === 'CHINA') {
-// var trace2 = {
-//   x: filteredMovieschina.map(row => row.Year),
-//   y: filteredMovieschina.map(row => row.Total),
-//   text: filteredMovieschina.map(row => row.Country),
-//   name: "china carbon emissions by all years",
-//   type: "scatter",
-//   mode :"lines"
-// };
-
-// var data =[trace2];
-// }
-
-
-// // Define the plot layout
-// var layout = {
-//   title: "carbon emission by USA",
-//   xaxis: { title: "Year" },
-//   yaxis: { title: "total pollution co2 emission" },
-
-
-//   xaxis: {
+ xaxis: {
     
-//     type: "year"
-//   },
-//   yaxis: {
-//     autorange: true,
-//     type: "linear"
-//   }
+   type: "year"
+},
+ yaxis: {
+ autorange: true,
+ type: "linear"
+}
+ };
 
-// };
-
-// // Plot the chart to a div tag with id "plot"
-// Plotly.newPlot("bar", data, layout);
-
-// });
+ Plotly.newPlot("#gauge", data, layout);
 
 
-// }
 
+
+
+});
+
+}
+
+buildPlot();
 // init();
  
 
@@ -435,9 +383,4 @@ d3.selectAll("#emissiontype").on("change", CreateBar);
 //       Plotly.newPlot("gauge", bardata, layout1);
 //       });
 // }
-
-
-
-
-
 
