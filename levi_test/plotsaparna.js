@@ -59,11 +59,18 @@ function OpeningBar() {
 
       traceData = [trace];
 
-      var layout = {
-          autosize: true,
-          title: "2014 Total Emissions by Country",
-          xaxis: { title: "CO2 Emissions in Metric Tons (Thousands)"},
-          yaxis: { title: "Country"}
+    var layout = {
+        height: 600,
+        width: 1000,
+         //autosize: true,
+        title: "2014 Total Emissions by Country",
+        xaxis: { title: "CO2 Emissions in Metric Tons (Thousands)"},
+        bargap:0.1,
+        margin: {
+                     l: 250,
+                    r: 100,
+                     t: 75,
+                     b: 50}
       };
 
       Plotly.newPlot("bar", traceData,layout)})};
@@ -219,10 +226,17 @@ function CreateBar() {
       traceData = [trace];
 
       var layout = {
-          autosize: true,
+        height: 600,
+        width: 1000,
+          //autosize: true,
           title: "2014 Total Emissions by Country",
-          xaxis: { title: "CO2 Emissions in Metric Tons (Thousands)"},
-          yaxis: { title: "Country"}
+          xaxis: { title: "CO2 Emissions (Thousands of Metric Tons)"},
+          bargap:0.1,
+          margin: {
+            l: 250,
+            r: 100,
+            t: 75,
+            b: 50},
       };
 
       Plotly.newPlot("bar", traceData,layout)
@@ -295,21 +309,22 @@ var tracechina = {
  
 var layout = {
  title: "Carbon emission by USA, China, United Kingdom",
-xaxis: { title: "Year" },
+height: 600,
+width: 1000,
+ xaxis: { title: "Year" },
 yaxis: { title: "Historical Carbon Emissions" },
+margin: {
+        l: 250,
+        r: 100,
+        t: 75,
+        b: 50},
 
-
- xaxis: {
-  autorange: true,
-   type: "year"
-},
- yaxis: {
- autorange: true,
- type: "linear"
-}
  };
 
- Plotly.newPlot("gauge", data, layout);
+ //Plotly.newPlot("gauge", data, layout);
+
+ var GAUGE = document.getElementById("gauge");
+  Plotly.newPlot(GAUGE, data, layout);
 
 });
 
