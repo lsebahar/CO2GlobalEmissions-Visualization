@@ -19,29 +19,43 @@
   <!--D3 cdn-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
 
-  <!-- CSS -
-  <link rel="stylesheet" type="text/css" href="style.css">-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
 
 
   <div class="container">
-    <div class="row">
-      <div class="col-md-10 jumbotron text-center">
-        <h1>Total Carbon Emissions CO2 By Country From 1750 TO 2014</h1>
-        <p>Use the interactive charts below to explore dataset!</p>
+    
+      <!--<div class="jumbotron jumbotron-fluid" style="fill:darkkhaki" width="20px">
+
+        <div class="container">
+        <h1 style="color: aqua;" class="display-4">CO2 Emissions by Country, 1750-2014</h1> 
+        <hr>
+        <p style="color: cyan;" class="lead">Use the drop-down to look at emission type by country in 2014, as well as a timeline of global industrial superpowers!</p>
+        </div>
       </div>
-    </div>
+
+    -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        
+        <h1 style="color: aqua;" class="display-4">CO2 Emissions by Country, 1750-2014</h1> 
+        <hr>
+        <p style="color:darkkhaki" class="lead">Use the drop-down to look at emission type by country in 2014, 
+          as well as a timeline of global industrial superpowers!</p>
+      </div>
+    </nav>
+    
+
+         
+
     <div class="row">
       <div class="col-md-2">
         <div class="well">
-          <h5>Country title :</h5>
-          <select id="selDataset">
-            <option value="dataset1">USA</option>
-            <option value="dataset2">CHINA</option>
-          </select>
-
+          <h5>Emission Type :</h5>
           <select id="emissiontype">
             <option value="Total">Total</option>
             <option value="Solid Fuel">Solid Fuel</option>
@@ -54,33 +68,41 @@
 
           </select>
         </div>
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Demographic Info</h3>
-          </div>
-          <div id="sample-metadata" class="panel-body"></div>
+        
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-5"> 
         <div id="bar"></div>
       </div>
-      <div class="col-md-5">
+
+      
+      <div class="col-md-5" style="height: fit-content;">
         <div id="gauge"></div>
+
+        <h1>hi , r u there ?</h1>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
+    <div class="row" > 
+      <div class="col-md-10" > 
         <div id="bubble"></div>
+        <select id="bub">
+
+
+          <option value="Total">usa</option>
+            <option value="Solid Fuel">china</option>
+        </select>
+        <h1>hi bubble where r u ?</h1>
       </div>
     </div>
-  </div>
+
+
+  
 
 
 
 
 
-  <!-- The div where we will inject our map -->
-  <div id="map"></div>
+ 
 
 
   
@@ -93,12 +115,19 @@
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js"></script>
+  
   <script type="text/javascript" src="https://cdn.rawgit.com/nezasa/iso8601-js-period/master/iso8601.min.js"></script>
   <script type="text/javascript" src="https://cdn.rawgit.com/socib/Leaflet.TimeDimension/master/dist/leaflet.timedimension.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   
   <!-- JS -->
   <script type="text/javascript" src="plotsaparna.js"></script>
+
+<div id = "linechart">
+<h1>linechart here</h1>
+
+</div>
+
+
 </body>
 </html>

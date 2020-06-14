@@ -7,22 +7,17 @@ var queryUrl = 'https://pkgstore.datahub.io/core/co2-fossil-by-nation/fossil-fue
 var countryValue = d3.select("#selDataset");
 var typeValue = d3.select("#emissiontype");
 
-// Display the default plot
+openingLine();
+d3.selectAll("#bub").on("change", openingLine);
 
-// is this needed? Displays all names in drop down
-// d3.json(queryUrl).then(function(data){
-  
-// 1 '=' sets year to zero, 2 is for match, 3 is for type
-
-// This is the inital Bar chart
 function OpeningBar() {
   d3.json(queryUrl).then(function(data){
 
     // Console log to check that data is pulling
     console.log(data.country);
-    function filteryear(movie) {
+    function filteryear(choice) {
       // Using == operator condition to filter year
-      return movie.Year == 2014;}
+      return choice.Year == 2014;}
 
     // Filtering by total to have more manageable dataset (website does this too)
       function filtertotal(num) {
@@ -62,11 +57,18 @@ function OpeningBar() {
 
       traceData = [trace];
 
-      var layout = {
-          autosize: true,
-          title: "2014 Total Emissions by Country",
-          xaxis: { title: "CO2 Emissions in Metric Tons (Thousands)"},
-          yaxis: { title: "Country"}
+    var layout = {
+        height: 600,
+        width: 1000,
+         //autosize: true,
+        title: "2014 Total Emissions by Country",
+        xaxis: { title: "CO2 Emissions in Metric Tons (Thousands)"},
+        bargap:0.1,
+        margin: {
+                     l: 250,
+                    r: 100,
+                     t: 75,
+                     b: 50}
       };
 
       Plotly.newPlot("bar", traceData,layout)})};
@@ -86,32 +88,15 @@ function CreateBar() {
 
     var filteredyear = data.filter(filteryear).filter(filtertotal);
     var sData = filteredyear.slice().sort((a,b) => d3.ascending(a.Total, b.Total));
-   
-
     
     var countriesList = sData.map(x => x.Country);
 
       console.log(sData)
-      
-
-     //console.log(Object.keys(sData[0]));
-
-     //console.log(typeSelection);
-
-    // This tells JS to use the column the users selects (not working)
+  
+    // This tells JS to use the column the users selects
     if (typeSelection == "Total") {
       var typeValues = (sData.map(x => x.Total));
     } else if (typeSelection == "Solid Fuel") {
-      //var typeValues = (sData.map(x => x.myTextOptions["Solid Fuel"]));
-     
-      //var solidkey = Object.keys("Solid Fuel");
-      //var typeValues = solidkey.values();
-
-       //var demoKeys = Object.keys(sData[0]);
-      //var typeValues = Object.values(sData[7]);
-     
-      // loop over values
-        // for  (let value of demoKeys) {
    
            
 
@@ -128,7 +113,6 @@ function CreateBar() {
     
         // Use the key to determine which array to push the value to
 
-        //console.log(Object.keys(recipe));
         if (key == "Solid Fuel" ){
 
          
@@ -138,10 +122,6 @@ function CreateBar() {
        });
        
     });
-    
-     
-     
-       
 
     } else if (typeSelection ==="Liquid Fuel") {
      
@@ -214,7 +194,6 @@ function CreateBar() {
       
      Object.entries(recipe).forEach(([key, value]) => {
     
-      
         if (key == "Per Capita" ){
 
          
@@ -245,10 +224,17 @@ function CreateBar() {
       traceData = [trace];
 
       var layout = {
-          autosize: true,
+        height: 600,
+        width: 1000,
+          //autosize: true,
           title: "2014 Total Emissions by Country",
-          xaxis: { title: "CO2 Emissions in Metric Tons (Thousands)"},
-          yaxis: { title: "Country"}
+          xaxis: { title: "CO2 Emissions (Thousands of Metric Tons)"},
+          bargap:0.1,
+          margin: {
+            l: 250,
+            r: 100,
+            t: 75,
+            b: 50},
       };
 
       Plotly.newPlot("bar", traceData,layout)
@@ -265,77 +251,93 @@ d3.selectAll("#emissiontype").on("change", CreateBar);
 
 
 
-function buildPlot() {
+function openingLine() {
 d3.json(queryUrl, function (data) {
 
-function filtercoutryusa(movie) {
+  console.log(hi);
 
+function filtercountryusa(movie) {
   return movie.Country = "USA";
 }
+var filteredMoviesusa = data.filter(filtercountryusa);
 
-var filteredMovies = data.filter(filtercoutryusa);
+console.log(hi);
 
-function filtercoutrychina(movie) {
+
+function filtercountrychina(movie) {
   return movie.Country = "China";
  }
+var filteredMovieschina = data.filter(filtercountrychina);
+
+console.log(hi);
 
 
-var filteredMovieschina = data.filter(filtercoutrychina);
 
+function filtercountryUK(movie) {
+  return movie.Country = "United Kingdom";
+ }
+var filteredMoviesUK = data.filter(filtercountryUK);
 
-var trace1 = {
- x: filteredMovies.map(row => row.Year),
- y: filteredMovies.map(val => val.SolidFuel),
- text: data.map(row => row.Country),
- type: "line",
+var traceusa = {
+ x: filteredMoviesusa.map(row => row.Year),
+ y: filteredMoviesusa.map(val => val.Total), 
+ // text: data.map(row => row.Country),
  mode :"lines",
- name: "usa carbon emiision by all years",
+ name: "USA",
+  line: {
+    color: 'rgb(219,64,82)',
+    width: 2
+  }
+};
+ console.log("after trace usa")
+var tracechina = {
+  x: filteredMoviechina.map(row => row.Year),
+  y: filteredMovieschina.map(val => val.Total), 
+  // text: data.map(row => row.Country),
+  mode :"lines",
+ name: "China",
+  line: {
+    color: 'rgb(55,128,191)',
+    width: 12
+  }}
 
- line: {
-  color: "#17BECF"
-}
+ var traceuk = {
+  x: filteredMoviesUK.map(row => row.Year),
+  y: filteredMoviesUK.map(val => val.Total), 
+  // text: data.map(row => row.Country),
+  mode :"lines",
+ name: "UK",
+  line: {
+    color: 'rgb(128,0,128)',
+    width: 12
+  }}
 
-// boxpoints: "all"
- };
-
-var trace2 = {
- x: filteredMovieschina.map(row => row.Year),
- y: filteredMovieschina.map(row => row.Total),
- text: filteredMovieschina.map(row => row.Country),
-name: "china carbon emissions by all years",
- type: "bar",
- mode :"lines"
- };
-
- var data =[trace1,trace2];
+ var data2 =[traceusa,tracechina, traceuk];
  
-var layout = {
- title: "carbon emission by USA",
-xaxis: { title: "Year" },
-yaxis: { title: "total pollution co2 emission" },
+var layout2 = {
+ title: "Carbon emission by USA, China, United Kingdom",
+height: 600,
+width: 1000,
+ xaxis: { title: "Year" },
+yaxis: { title: "Historical Carbon Emissions" },
+margin: {
+        l: 250,
+        r: 100,
+        t: 75,
+        b: 50},
 
-
- xaxis: {
-    
-   type: "year"
-},
- yaxis: {
- autorange: true,
- type: "linear"
-}
  };
 
- Plotly.newPlot("#gauge", data, layout);
+  Plotly.newPlot("linechart", data2, layout2);
 
-
-
-
+  //var GAUGE = document.getElementById("gauge");
+ // Plotly.newPlot(GAUGE, data, layout);
 
 });
 
 }
 
-buildPlot();
+
 // init();
  
 
