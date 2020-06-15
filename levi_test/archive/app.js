@@ -1,6 +1,5 @@
 
-//1) X- POLLUTION TYPE  ,  
-//2) Y - POLLUTION AMOUNT , 
+
 
 
 var svgWidth = 900;

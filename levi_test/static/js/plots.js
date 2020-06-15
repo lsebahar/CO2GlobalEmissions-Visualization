@@ -241,10 +241,6 @@ function CreateBar() {
   })
 };
 
-// Function to update all charts
-
-
-// Event listener (not working)
 
 
 
@@ -252,24 +248,24 @@ function CreateBar() {
 function openingLine() {
 d3.json(queryUrl, function (data) {
 
-  console.log(hi);
+  
 
 function filtercountryusa(movie) {
-  return movie.Country = "USA";
+  return movie.Country = "UNITED STATES OF AMERICA";
 }
 var filteredMoviesusa = data.filter(filtercountryusa);
 
 function filtercountrychina(movie) {
-  return movie.Country = "China";
+  return movie.Country = "CHINA (MAINLAND)";
  }
 var filteredMovieschina = data.filter(filtercountrychina);
 
-console.log(hi);
+
 
 
 
 function filtercountryUK(movie) {
-  return movie.Country = "United Kingdom";
+  return movie.Country = "UNITED KINGDOM";
  }
 var filteredMoviesUK = data.filter(filtercountryUK);
 
@@ -281,19 +277,19 @@ var traceusa = {
  name: "USA",
   line: {
     color: 'rgb(219,64,82)',
-    width: 2
+    width: 5
   }
 };
- console.log("after trace usa")
+ 
 var tracechina = {
-  x: filteredMoviechina.map(row => row.Year),
+  x: filteredMovieschina.map(row => row.Year),
   y: filteredMovieschina.map(val => val.Total), 
   // text: data.map(row => row.Country),
   mode :"lines",
  name: "China",
   line: {
     color: 'rgb(55,128,191)',
-    width: 12
+    width: 8
   }}
 
  var traceuk = {
@@ -304,7 +300,7 @@ var tracechina = {
  name: "UK",
   line: {
     color: 'rgb(128,0,128)',
-    width: 12
+    width: 10
   }}
 
  var data2 =[traceusa,tracechina, traceuk];
@@ -323,7 +319,7 @@ margin: {
 
  };
 
-  Plotly.newPlot("linechart", data2, layout2);
+  Plotly.newPlot("bubble", data2, layout2);
 
   //var GAUGE = document.getElementById("gauge");
  // Plotly.newPlot(GAUGE, data, layout);
@@ -332,6 +328,7 @@ margin: {
 
 }
 
+openingLine();
 
 // Create a function to run all 3 functions we previously set up to up date charts based on user selection.
 

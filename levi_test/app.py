@@ -25,15 +25,15 @@ def welcome():
         f"/mongo-data<br/>"
         
         f"/visual<br/>"
-        
+          f"/linevisual<br/>"
 
     )
     
 
 
 # Route that will trigger the emissions function
-@app.route("/emissions")
-def emissions():
+#@app.route("/emissions")
+#def emissions():
 
     # Run the get_emissions function
     #emissions_data = get_emissions.emissions_pull()
@@ -46,9 +46,9 @@ def emissions():
 
 
 
- @app.route('/mongo-data')
+@app.route('/mongo-data')
  
- def connect():
+def connect():
 
 # Find one record of data from the mongo database
    emission_data = mongo.db.collection
@@ -75,6 +75,13 @@ def show():
 
  return render_template('index.html')
 
+
+
+# Potential Interactive line Chart
+@app.route('/linevisual')
+def show2():
+
+ return render_template('visuallinechart.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
