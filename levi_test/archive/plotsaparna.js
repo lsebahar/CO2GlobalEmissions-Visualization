@@ -7,9 +7,11 @@ var queryUrl = 'https://pkgstore.datahub.io/core/co2-fossil-by-nation/fossil-fue
 var countryValue = d3.select("#selDataset");
 var typeValue = d3.select("#emissiontype");
 
-openingLine();
-d3.selectAll("#bub").on("change", openingLine);
+// Display the default plot
+  
+// 1 '=' sets year to zero, 2 is for match, 3 is for type
 
+// // This is the inital Bar chart
 function OpeningBar() {
   d3.json(queryUrl).then(function(data){
 
@@ -254,24 +256,15 @@ d3.selectAll("#emissiontype").on("change", CreateBar);
 function openingLine() {
 d3.json(queryUrl, function (data) {
 
-  console.log(hi);
-
 function filtercountryusa(movie) {
   return movie.Country = "USA";
 }
 var filteredMoviesusa = data.filter(filtercountryusa);
 
-console.log(hi);
-
-
 function filtercountrychina(movie) {
   return movie.Country = "China";
  }
 var filteredMovieschina = data.filter(filtercountrychina);
-
-console.log(hi);
-
-
 
 function filtercountryUK(movie) {
   return movie.Country = "United Kingdom";
@@ -289,7 +282,7 @@ var traceusa = {
     width: 2
   }
 };
- console.log("after trace usa")
+
 var tracechina = {
   x: filteredMoviechina.map(row => row.Year),
   y: filteredMovieschina.map(val => val.Total), 
@@ -312,9 +305,9 @@ var tracechina = {
     width: 12
   }}
 
- var data2 =[traceusa,tracechina, traceuk];
+ var data =[traceusa,tracechina, traceuk];
  
-var layout2 = {
+var layout = {
  title: "Carbon emission by USA, China, United Kingdom",
 height: 600,
 width: 1000,
@@ -328,16 +321,16 @@ margin: {
 
  };
 
-  Plotly.newPlot("linechart", data2, layout2);
+ //Plotly.newPlot("gauge", data, layout);
 
-  //var GAUGE = document.getElementById("gauge");
- // Plotly.newPlot(GAUGE, data, layout);
+ var GAUGE = document.getElementById("gauge");
+  Plotly.newPlot(GAUGE, data, layout);
 
 });
 
 }
 
-
+openingLine();
 // init();
  
 
