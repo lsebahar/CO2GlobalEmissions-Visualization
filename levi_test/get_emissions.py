@@ -15,7 +15,7 @@ def emissions_pull():
 
     df = df.loc[((df['Year'] == 2014) & (df['Total'] > 50000)) | ((df['Country'] == "UNITED KINGDOM") | (df['Country'] == "CHINA (MAINLAND)") | (df['Country'] == "USA"))]
 
-    json_data = df.reset_index().to_json(orient='records')
+    json_data = dict(df.reset_index().to_json(orient='records'))
 
     return json_data
 

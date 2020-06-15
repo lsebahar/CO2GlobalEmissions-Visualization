@@ -259,9 +259,6 @@ function filtercountryusa(movie) {
 }
 var filteredMoviesusa = data.filter(filtercountryusa);
 
-console.log(hi);
-
-
 function filtercountrychina(movie) {
   return movie.Country = "China";
  }
