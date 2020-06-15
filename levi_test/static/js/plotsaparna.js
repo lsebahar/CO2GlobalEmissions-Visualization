@@ -3,12 +3,12 @@
 // NEW, full query URL. Previous version was just a sample of the dataset
 var queryUrl = 'https://pkgstore.datahub.io/core/co2-fossil-by-nation/fossil-fuel-co2-emissions-by-nation_json/data/2b4874bb29c461a614e92773956ad573/fossil-fuel-co2-emissions-by-nation_json.json'
 
-// Should be the drop down form
+//var queryUrl=  "http://127.0.0.1:5000/mongo-data";
 var countryValue = d3.select("#selDataset");
 var typeValue = d3.select("#emissiontype");
 
-openingLine();
-d3.selectAll("#bub").on("change", openingLine);
+
+
 
 function OpeningBar() {
   d3.json(queryUrl).then(function(data){
@@ -242,12 +242,10 @@ function CreateBar() {
 };
 
 // Function to update all charts
-function updateCharts() {
-  CreateBar();
-};
+
 
 // Event listener (not working)
-d3.selectAll("#emissiontype").on("change", CreateBar);
+
 
 
 
@@ -338,51 +336,14 @@ margin: {
 }
 
 
-// init();
- 
+// Create a function to run all 3 functions we previously set up to up date charts based on user selection.
 
+function callAll() {
+  CreateBar();
+  openingLine();
+};
 
+// Create the event listener to listen for a change in the drop down of IDs
 
-// function init() {
-  
-// //   d3.json(queryUrl, function (data) {
-  
-// function filteryear(movie) {
-// return movie.Year = "2014";
-// }
-  
-  
-// var filteredyear = data.filter(filteryear);
-  
-//   console.log(filteredyear)
-  
-//   var 
-
-//   var trace1 = {
-//     x: filteredyear.map(row => row.Total),
-//     y: filteredyear.map(row => row.Country),
-//     text: filteredyear.map(row => row.Country),
-//     name: "co2 emiision by all countrys",
-//     type: "bar",
-//     orientation: "h"
-//   };
-
-//   var bardata = [trace1];
-  
-//   var layout1 = {
-//         title: "countries emission in 2014!",
-//         height: 800,
-//        width: 1200,
-//         margin: {
-//           l: 75,
-//          r: 75,
-//           t: 75,
-//           b: 50
-//         }
-//       }
-
-//        // Render the plot to the div tag with id "bar"
-//       Plotly.newPlot("gauge", bardata, layout1);
-//       });
-// }
+d3.selectAll("#emissiontype").on("change", callAll);
 

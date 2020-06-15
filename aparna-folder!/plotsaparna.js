@@ -8,7 +8,7 @@ var countryValue = d3.select("#selDataset");
 var typeValue = d3.select("#emissiontype");
 
 openingLine();
-d3.selectAll("#bub").on("change", openingLine);
+
 
 function OpeningBar() {
   d3.json(queryUrl).then(function(data){
@@ -252,7 +252,9 @@ d3.selectAll("#emissiontype").on("change", CreateBar);
 
 
 function openingLine() {
-d3.json(queryUrl, function (data) {
+
+
+  d3.json(queryUrl, function (data) {
 
   console.log(hi);
 
