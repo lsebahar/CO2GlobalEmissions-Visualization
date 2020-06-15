@@ -24,3 +24,9 @@ html {
   margin-right: 10px;
   opacity: 0.7;
 }
+
+#h1{ 
+  text-align: center;
+  color: darkslategray;
+  border: 2px solid black;
+}

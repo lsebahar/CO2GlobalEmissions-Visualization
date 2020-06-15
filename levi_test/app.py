@@ -1,4 +1,5 @@
 
+from flask import Flask
 from flask_pymongo import PyMongo
 from flask import Flask, render_template, redirect, jsonify
 import json
@@ -49,8 +50,6 @@ def emissions():
  
  def connect():
 
-
-   
 # Find one record of data from the mongo database
    emission_data = mongo.db.collection
 
@@ -61,7 +60,7 @@ def emissions():
         db_data.append(emi)
     
     # Return template and data
-    return jsonify(db_data)
+   return jsonify(db_data)
 
 # Find one record of data from the mongo database
 #emissions_data = mongo.db.collection.find_one()

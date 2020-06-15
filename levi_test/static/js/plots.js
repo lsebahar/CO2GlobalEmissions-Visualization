@@ -11,7 +11,7 @@ var typeValue = d3.select("#emissiontype");
 
 
 function OpeningBar() {
-  d3.json(queryUrl).then(function(data){
+  d3.json(queryUrl,function(data){
 
     // Console log to check that data is pulling
     console.log(data.country);
@@ -77,7 +77,7 @@ OpeningBar();
 
 // Making bar chart interactive
 function CreateBar() {
-  d3.json(queryUrl).then(function(data){
+  d3.json(queryUrl,function(data){
     var typeSelection = typeValue.property("value");
 
     function filteryear(movie) {
