@@ -18,7 +18,7 @@ def home():
 
     
     # Return template and data
-    return render_template("index.html", gas=emissions_data)
+    return render_template("index.html", Gas=emissions_data)
 
 
 # Route that will trigger the emissions function
@@ -26,7 +26,7 @@ def home():
 def emissions():
 
     # Run the get_emissions function
-    emissions_data = get_emissions.emissions_pull
+    emissions_data = get_emissions.emissions_pull()
 
     # Update the Mongo database using update and upsert=True
     mongo.db.collection.update({}, emissions_data, upsert=True)

@@ -1,4 +1,5 @@
 # Dependencies
+from flask import Flask
 import pymongo
 import datetime
 import get_emissions
