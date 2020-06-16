@@ -75,6 +75,71 @@ function OpeningBar() {
 
 OpeningBar();
 
+function OpeningBar2() {
+  d3.json(queryUrl,function(data){
+
+    // Console log to check that data is pulling
+    console.log(data.country);
+    function filteryear(choice) {
+      // Using == operator condition to filter year
+      return choice.Year == 2014;}
+
+    // Filtering by total to have more manageable dataset (website does this too)
+      function filtertotal(num) {
+      return num.Total > 50000;}
+
+    // Using both filter functions here
+    var filteredyear = data.filter(filteryear).filter(filtertotal);
+    
+    // Orders the data from lowest to highest
+    var sData = filteredyear.slice().sort((a,b) => d3.ascending(a.Total, b.Total));
+    console.log(sData);
+    
+    // Collecting Values for X axis
+    var chartValues = sData.map(x => x.Total);
+    
+    // Collecting Country names for Y Axis
+    var countriesList = sData.map(x => x.Country);
+      
+    // Reversing values to get ascending order
+    var reversedValues = chartValues.reverse();
+    var yLabels = countriesList.reverse();
+
+    // Console log to check reversal works
+    //console.log(reversedValues);
+
+  
+    var trace = {
+      x: reversedValues,
+      y: yLabels,
+      type: "bar",
+
+      // Don't forget horizontal orientation!
+      orientation: 'h',
+      text: yLabels
+          
+      };
+
+      traceData = [trace];
+
+    var layout = {
+        height: 600,
+        width: 1000,
+         //autosize: true,
+        title: "2014 Total Emissions by Country",
+        xaxis: { title: "CO2 Emissions in Metric Tons (Thousands)"},
+        bargap:0.1,
+        margin: {
+                     l: 250,
+                    r: 100,
+                     t: 75,
+                     b: 50}
+      };
+
+      Plotly.newPlot("bar", traceData,layout)})};
+
+OpeningBar2();
+
 // Making bar chart interactive
 function CreateBar() {
   d3.json(queryUrl,function(data){
@@ -248,21 +313,35 @@ function CreateBar() {
 function openingLine() {
 d3.json(Url, function (data) {
 
+<<<<<<< HEAD
+  //console.log(hi);
+=======
   
+>>>>>>> ddd4f4b581658fe23345b96a85e81bf66d0c4e72
 
 function filtercountryusa(movie) {
   return movie.Country == "UNITED STATES OF AMERICA";
 }
 var filteredMoviesusa = data.filter(filtercountryusa);
 
+<<<<<<< HEAD
+//console.log(hi);
+
+
+=======
+>>>>>>> ddd4f4b581658fe23345b96a85e81bf66d0c4e72
 function filtercountrychina(movie) {
   return movie.Country == "CHINA (MAINLAND)";
  }
 var filteredMovieschina = data.filter(filtercountrychina);
 
+<<<<<<< HEAD
+//console.log(hi);
+=======
 console.log(filteredMovieschina)
 console.log(filteredMoviesusa)
 
+>>>>>>> ddd4f4b581658fe23345b96a85e81bf66d0c4e72
 
 
 
