@@ -92,7 +92,7 @@ function CreateBar() {
     
     var countriesList = sData.map(x => x.Country);
 
-      console.log(sData)
+      
   
     // This tells JS to use the column the users selects
     if (typeSelection == "Total") {
@@ -190,7 +190,7 @@ function CreateBar() {
     } else if(typeSelection == "Per Capita") {
       var typeValues = [];
 
-     sData.forEach((recipe) => {
+    sData.forEach((recipe) => {
  
       
      Object.entries(recipe).forEach(([key, value]) => {
@@ -334,16 +334,93 @@ margin: {
 
 openingLine();
 
-// Create a function to run all 3 functions we previously set up to up date charts based on user selection.
+
 
 
 function Createpercapita() {
-  d3.json(queryUrl,function(data){
+  d3.json(Url,function(data){
 
+    function filteryear1(m) {
+      return m.Year == 2014;}
+
+      function filtertotal(num) {
+        return num.Total > 50000;}
+
+    var final = data.filter(filteryear1).filter(filtertotal);
+    
+
+    console.log(final)
+        var percapitavalues = [];
+
+        
+
+          final.forEach((recipe) => {
+             Object.entries(recipe).forEach(([key, value]) => {
+           
+               if (key == "Per Capita" ){
+       
+                
+                percapitavalues.push(value)
+             }
+               
+              });
+              
+           });
+
+         
+ 
+           console.log(percapitavalues)
+          
+
+           var Listcountry = final.map(x => x.Country);
+          var sortedAscending = Listcountry.sort((a, b) => a - b);
+
+
+          // Slice the first five elements of the sortedAscending array, assign to a variable
+          var sliced = sortedAscending.slice(0, 11);
+
+
+          
+         
+          var reverspercapita = percapitavalues.reverse();
+
+          
+
+          var traco = {
+            x: reverspercapita,
+            y: sliced,
+            type: "bar",
+            orientation: 'h',
+            text: sliced
+                
+            };
+      
+            databar = [traco];
+      
+            var layout4 = {
+              height: 600,
+              width: 1000,
+                //autosize: true,
+                title: "Total Emissions by Country per capita ranking 2014 year",
+                xaxis: { title: "CO2 Emissions  per capita (Thousands of Metric Tons)"},
+                bargap:0.1,
+                //plot_bgcolor:"black",
+                marker: {
+                  color: 'red'
+                },
+                margin: {
+                  l: 250,
+                  r: 100,
+                  t: 75,
+                  b: 50},
+            };
+      
+            Plotly.newPlot("barpercapita", databar,layout4)
 
     
   })};
 
+  Createpercapita();
 
 
 function callAll() {
