@@ -313,35 +313,19 @@ function CreateBar() {
 function openingLine() {
 d3.json(Url, function (data) {
 
-<<<<<<< HEAD
-  //console.log(hi);
-=======
-  
->>>>>>> ddd4f4b581658fe23345b96a85e81bf66d0c4e72
 
 function filtercountryusa(movie) {
   return movie.Country == "UNITED STATES OF AMERICA";
 }
 var filteredMoviesusa = data.filter(filtercountryusa);
 
-<<<<<<< HEAD
-//console.log(hi);
 
-
-=======
->>>>>>> ddd4f4b581658fe23345b96a85e81bf66d0c4e72
 function filtercountrychina(movie) {
   return movie.Country == "CHINA (MAINLAND)";
  }
 var filteredMovieschina = data.filter(filtercountrychina);
 
-<<<<<<< HEAD
-//console.log(hi);
-=======
-console.log(filteredMovieschina)
-console.log(filteredMoviesusa)
 
->>>>>>> ddd4f4b581658fe23345b96a85e81bf66d0c4e72
 
 
 
