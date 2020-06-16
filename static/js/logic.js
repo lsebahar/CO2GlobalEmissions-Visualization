@@ -25,16 +25,16 @@ d3.json("/static/js/co2.json" ,function(data) {
     center: [15.5994, -28.6731],
     zoom: 3
   });
-  
+
   for (var i = 0; i < data_2014.length; i++) {
     var location1 = data_2014[i];
+    //var total_radius = data_2014[Total];
+
         L.circle((location1.coordinates),{
           color: "green",
           fillColor: "green",
           fillOpacity: 0.50,
-          radius: 50})
-          .addTo(myMap);
-          console.log(location1.coordinates);
+          radius: 5000}).addTo(myMap);
   }
 
 
