@@ -75,7 +75,7 @@ def connect():
 @app.route('/visual')
 def show():
 
- return render_template('index.html')
+ return render_template('index_eddie.html')
 
 
 
