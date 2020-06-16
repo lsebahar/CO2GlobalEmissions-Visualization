@@ -1,9 +1,9 @@
 
 
 // NEW, full query URL. Previous version was just a sample of the dataset
-var queryUrl = 'https://pkgstore.datahub.io/core/co2-fossil-by-nation/fossil-fuel-co2-emissions-by-nation_json/data/2b4874bb29c461a614e92773956ad573/fossil-fuel-co2-emissions-by-nation_json.json'
+//var queryUrl = 'https://pkgstore.datahub.io/core/co2-fossil-by-nation/fossil-fuel-co2-emissions-by-nation_json/data/2b4874bb29c461a614e92773956ad573/fossil-fuel-co2-emissions-by-nation_json.json'
 
-//var queryUrl=  "http://127.0.0.1:5000/mongo-data";
+var queryUrl=  "http://127.0.0.1:5000/mongo-data";
 var countryValue = d3.select("#selDataset");
 var typeValue = d3.select("#emissiontype");
 
@@ -251,33 +251,37 @@ d3.json(queryUrl, function (data) {
   
 
 function filtercountryusa(movie) {
-  return movie.Country = "UNITED STATES OF AMERICA";
+  return movie.Country == "UNITED STATES OF AMERICA";
 }
 var filteredMoviesusa = data.filter(filtercountryusa);
 
 function filtercountrychina(movie) {
-  return movie.Country = "CHINA (MAINLAND)";
+  return movie.Country == "CHINA (MAINLAND)";
  }
 var filteredMovieschina = data.filter(filtercountrychina);
 
+console.log(filteredMovieschina)
+console.log(filteredMoviesusa)
 
 
 
 
 function filtercountryUK(movie) {
-  return movie.Country = "UNITED KINGDOM";
+  return movie.Country == "UNITED KINGDOM";
  }
 var filteredMoviesUK = data.filter(filtercountryUK);
+
+console.log(filteredMoviesUK)
 
 var traceusa = {
  x: filteredMoviesusa.map(row => row.Year),
  y: filteredMoviesusa.map(val => val.Total), 
  // text: data.map(row => row.Country),
- mode :"lines",
+ mode :"line",
  name: "USA",
   line: {
     color: 'rgb(219,64,82)',
-    width: 5
+    width: 4
   }
 };
  
@@ -289,7 +293,7 @@ var tracechina = {
  name: "China",
   line: {
     color: 'rgb(55,128,191)',
-    width: 8
+    width: 6
   }}
 
  var traceuk = {
@@ -300,7 +304,7 @@ var tracechina = {
  name: "UK",
   line: {
     color: 'rgb(128,0,128)',
-    width: 10
+    width: 5
   }}
 
  var data2 =[traceusa,tracechina, traceuk];

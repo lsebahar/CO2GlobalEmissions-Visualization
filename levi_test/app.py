@@ -50,6 +50,8 @@ def welcome():
  
 def connect():
 
+
+
 # Find one record of data from the mongo database
    emission_data = mongo.db.collection
 

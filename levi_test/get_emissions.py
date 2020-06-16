@@ -13,7 +13,7 @@ def emissions_pull():
 
     df = df.drop(columns=['Bunker fuels (Not in Total)'])
 
-    df = df.loc[((df['Year'] == 2014) & (df['Total'] > 50000)) | ((df['Country'] == "UNITED KINGDOM") | (df['Country'] == "CHINA (MAINLAND)") | (df['Country'] == "USA"))]
+    df = df.loc[(df['Total'] > 50000) | ((df['Country'] == "UNITED KINGDOM") | (df['Country'] == "CHINA (MAINLAND)") | (df['Country'] == "USA"))]
 
     json_data = dict(df.reset_index().to_json(orient='records'))
 
