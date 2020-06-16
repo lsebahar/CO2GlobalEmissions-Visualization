@@ -28,13 +28,13 @@ d3.json("/static/js/co2.json" ,function(data) {
 
   for (var i = 0; i < data_2014.length; i++) {
     var location1 = data_2014[i];
+    console.log(location1);
     //var total_radius = data_2014[Total];
-
         L.circle((location1.coordinates),{
           color: "green",
           fillColor: "green",
           fillOpacity: 0.50,
-          radius: 5000}).addTo(myMap);
+          radius: 500000}).addTo(myMap);
   }
 
 
