@@ -75,7 +75,7 @@ def connect():
 @app.route('/visual')
 def show():
 
- return render_template('index_eddie.html')
+ return render_template('index.html')
 
 
 
@@ -83,7 +83,7 @@ def show():
 @app.route('/mapvisual')
 def show2():
 
- return render_template('visuallinechart.html')
+ return render_template('index_eddie_1.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
