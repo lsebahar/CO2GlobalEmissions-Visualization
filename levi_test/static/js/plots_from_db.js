@@ -4,8 +4,7 @@ var url = "mongodb://localhost:27017/";
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("emissions_db");
-  var query = { address: "Park Lane 38" };
-  dbo.collection("customers").find(query).toArray(function(err, result) {
+  dbo.collection("emissions_info").toArray(function(err, result) {
     if (err) throw err;
     console.log(result);
     db.close();
@@ -16,7 +15,6 @@ MongoClient.connect(url, function(err, db) {
 var queryUrl = 'https://pkgstore.datahub.io/core/co2-fossil-by-nation/fossil-fuel-co2-emissions-by-nation_json/data/2b4874bb29c461a614e92773956ad573/fossil-fuel-co2-emissions-by-nation_json.json'
 
 //var queryUrl=  "http://127.0.0.1:5000/mongo-data";
-var countryValue = d3.select("#selDataset");
 var typeValue = d3.select("#emissiontype");
 
 

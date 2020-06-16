@@ -32,6 +32,7 @@
 <!-- <style>
 
 body {
+<<<<<<< HEAD
  background: url(image5.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -40,10 +41,19 @@ body {
 
    }
  </style>-->
+=======
+   background: url(image5)  no-repeat center center fixed;
+   background-size: 100% 100%;
+   height: 100%;
+   position: absolute;
+   width: 100%;
+ }
+ </style>
+>>>>>>> ddd4f4b581658fe23345b96a85e81bf66d0c4e72
 
 </head>
 
-<body>
+<body background="image5.jpg">
   
 
   <div class="container">
@@ -62,7 +72,8 @@ body {
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
         
-        <h1 style="color:darkslategray" id="h1">CO2 Emissions by Country, 1750-2014</h1> 
+        <h1 id="h1">CO2 Emissions by Country, 1750-2014</h1> 
+        <a class="btn btn-primary" href="http://127.0.0.1:5000/linevisual" role="button">Link</a>
         <hr>
         <p style="color:darkkhaki" class="lead">Use the drop-down to look at emission type by country in 2014, 
           as well as a timeline of global industrial superpowers!</p>
@@ -119,6 +130,7 @@ body {
 
   <!-- my JS Code -->
   <script src="../static/js/plots.js"></script>
+  
 
 
 
