@@ -1,7 +1,7 @@
 
 
 // NEW, full query URL. Previous version was just a sample of the dataset
-//var queryUrl = 'https://pkgstore.datahub.io/core/co2-fossil-by-nation/fossil-fuel-co2-emissions-by-nation_json/data/2b4874bb29c461a614e92773956ad573/fossil-fuel-co2-emissions-by-nation_json.json'
+var Url = 'https://pkgstore.datahub.io/core/co2-fossil-by-nation/fossil-fuel-co2-emissions-by-nation_json/data/2b4874bb29c461a614e92773956ad573/fossil-fuel-co2-emissions-by-nation_json.json'
 
 var queryUrl=  "http://127.0.0.1:5000/mongo-data";
 var countryValue = d3.select("#selDataset");
@@ -246,7 +246,7 @@ function CreateBar() {
 
 
 function openingLine() {
-d3.json(queryUrl, function (data) {
+d3.json(Url, function (data) {
 
   
 
@@ -281,7 +281,7 @@ var traceusa = {
  name: "USA",
   line: {
     color: 'rgb(219,64,82)',
-    width: 4
+    width: 2
   }
 };
  
@@ -293,7 +293,7 @@ var tracechina = {
  name: "China",
   line: {
     color: 'rgb(55,128,191)',
-    width: 6
+    width: 2
   }}
 
  var traceuk = {
@@ -304,7 +304,7 @@ var tracechina = {
  name: "UK",
   line: {
     color: 'rgb(128,0,128)',
-    width: 5
+    width: 2
   }}
 
  var data2 =[traceusa,tracechina, traceuk];

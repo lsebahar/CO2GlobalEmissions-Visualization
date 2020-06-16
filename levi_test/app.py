@@ -25,7 +25,7 @@ def welcome():
         f"/mongo-data<br/>"
         
         f"/visual<br/>"
-          f"/linevisual<br/>"
+          f"/mapvisual<br/>"
 
     )
     
@@ -80,7 +80,7 @@ def show():
 
 
 # Potential Interactive line Chart
-@app.route('/linevisual')
+@app.route('/mapvisual')
 def show2():
 
  return render_template('visuallinechart.html')
