@@ -12,3 +12,8 @@ There isn’t a more important time to prioritize clean energy as businesses re-
 
 
 ![](https://github.com/lsebahar/CO2GlobalEmissions-Visualization/blob/master/levi_test/static/images/Annotation%202020-06-15%20182003.png)
+
+## json data Fossil Fuels since 1751, By Nation 
+![](https://github.com/lsebahar/CO2GlobalEmissions-Visualization/blob/master/levi_test/static/images/Annotation%202020-06-15%20204430.png)
+
+![](https://github.com/lsebahar/CO2GlobalEmissions-Visualization/blob/master/levi_test/static/images/fieldimage.png)
