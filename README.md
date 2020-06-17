@@ -26,6 +26,8 @@ The industrialization of China is evident in the growth from 1950 to 2014.
 
 Despite a growing population, the UK has not substantially grown emissions relative to the US and China
 
+![](https://github.com/lsebahar/CO2GlobalEmissions-Visualization/blob/master/levi_test/static/images/newplot%20(4).png)
+
 
 
 
