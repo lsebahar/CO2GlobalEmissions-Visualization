@@ -25,18 +25,27 @@ d3.json("/static/js/co2.json" ,function(data) {
     center: [15.5994, -28.6731],
     zoom: 3
   });
-
-  for (var i = 0; i < data_2014.length; i++) {
-    var location1 = data_2014[i];
-    console.log(location1);
-    //var total_radius = data_2014[Total];
-        L.circle((location1.coordinates),{
-          color: "green",
-          fillColor: "green",
-          fillOpacity: 0.50,
-          radius: 500000}).addTo(myMap);
+  //return color based on value
+  function getColor(x) {
+    return x > 200000 ? "purple" :
+           x > 100000 ? "blue" :
+           x > 80000 ? "red" :
+           x > 50000 ? "orange" :
+           x > 25000 ? "yellow" :
+           x > 0 ? "lightgreen" :
+                "#lightgreen";
   }
 
+  for (var i = 0; i < data_2014.length; i++) {
+    var location = data_2014[i];
+    console.log(location);
+    //var total_radius = data_2014[Total];
+        L.circle((location.coordinates),{
+          color: getColor(location.total),
+          fillColor: getColor(location.total),
+          fillOpacity: 0.50,
+          radius: location.total*1.5}).addTo(myMap);
+  }
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -55,7 +64,7 @@ d3.json("/static/js/co2.json" ,function(data) {
 
   legend.onAdd = function() {
     var div = L.DomUtil.create("div", "info legend");
-    var grades = [10000, 20000, 30000, 40000, 50000, 60000];
+    var grades = [0, 25000, 50000, 80000, 100000, 200000];
     var colors = ["lightgreen", "yellow", "orange", "red", "blue", "purple"];
 
     for (var i=0;i<grades.length;i++){

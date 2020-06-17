@@ -144,9 +144,9 @@ function styleInfo(feature){
     return{
       opacity: 1,
       fillOpacity: 1,
-      fillColor: getColor(feature.properties.Total),
+      fillColor: getColor(feature.properties.total),
       color:"#000000",
-      radius:feature.properties.Total,
+      radius:feature.properties.total,
       stroke:true,
       weight:0.5
     };
