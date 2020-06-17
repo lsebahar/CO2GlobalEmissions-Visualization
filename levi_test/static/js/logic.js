@@ -11,7 +11,13 @@ d3.json("/static/js/co2.json" ,function(data) {
   });
     // create function to return data from 2014 only.
     function year(recent) {
+      return recent.year == 2014;
+  }
+    function year2(recent) {
       return recent.year == 1980;
+    }
+    function year3(recent) {
+    return recent.year == 1920;
   }
 
   var recentData = results.filter(year);
@@ -20,6 +26,9 @@ d3.json("/static/js/co2.json" ,function(data) {
   // Pass through results array and store 2014 data in variable
   var data_2014 = recentData.filter(year);
   console.log(data_2014);
+  var data_1980 = recentData.filter(year2);
+  var data_1920 = recentData.filter(year3);
+
 
   var myMap = L.map("map", {
     center: [15.5994, -28.6731],
