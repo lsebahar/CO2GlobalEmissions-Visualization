@@ -28,6 +28,8 @@ Despite a growing population, the UK has not substantially grown emissions relat
 
 ![](https://github.com/lsebahar/CO2GlobalEmissions-Visualization/blob/master/levi_test/static/images/newplot%20(4).png)
 
+![](https://github.com/lsebahar/CO2GlobalEmissions-Visualization/blob/master/levi_test/static/images/percapitaslide.png)
+
 
 
 
