@@ -17,3 +17,15 @@ There isn’t a more important time to prioritize clean energy as businesses re-
 ![](https://github.com/lsebahar/CO2GlobalEmissions-Visualization/blob/master/levi_test/static/images/Annotation%202020-06-15%20204430.png)
 
 ![](https://github.com/lsebahar/CO2GlobalEmissions-Visualization/blob/master/levi_test/static/images/fieldnames.png)
+
+## Industrial Powers over Time , USA CHINA U.K
+
+Emissions have generally increased over time with minor decreased emissions around WW2 in 1944 and the financial crisis of 2009. Coming out of both instances emissions increased.
+
+The industrialization of China is evident in the growth from 1950 to 2014.
+
+Despite a growing population, the UK has not substantially grown emissions relative to the US and China
+
+
+
+
