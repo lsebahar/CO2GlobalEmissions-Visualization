@@ -11,7 +11,7 @@ d3.json("/static/js/co2.json" ,function(data) {
   });
     // create function to return data from 2014 only.
     function year(recent) {
-      return recent.year == 2014;
+      return recent.year == 1980;
   }
 
   var recentData = results.filter(year);
@@ -64,14 +64,17 @@ d3.json("/static/js/co2.json" ,function(data) {
 
   legend.onAdd = function() {
     var div = L.DomUtil.create("div", "info legend");
+    labels = ['<strong>Pollution Thousands Tons of C</strong>'];
     var grades = [0, 25000, 50000, 80000, 100000, 200000];
     var colors = ["lightgreen", "yellow", "orange", "red", "blue", "purple"];
 
     for (var i=0;i<grades.length;i++){
       //console.log(colors[i]);
       div.innerHTML  += 
-        "<i style= 'background: " + colors[i] + "'></i>" + grades[i] + (grades[i+1] ? "&ndash;" + grades[i+1]+ "<br>" : "+" );
+      labels.push(
+        "<i style= 'background: " + colors[i] + "'></i>" + grades[i] + (grades[i+1] ? "&ndash;" + grades[i+1]+ "<br>" : "+" ));
     }
+    div.innerHTML = labels.join('<br>');
     return div;
   };
 
