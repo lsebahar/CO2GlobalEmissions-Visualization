@@ -1,4 +1,4 @@
-# Project-2
+# UCSD Data Science & Visualization: Project-2
 ## OBJECTIVE: Understand Historical CO2 Emission Trends by Nation
  
 More than ever consumers are demanding their products & services minimize pollution harmful to our planet. 
