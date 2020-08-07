@@ -1,5 +1,5 @@
 # Project-2
-## OBJECTIVE: Understand historical CO2 emission trends by nation.
+## OBJECTIVE: Understand Historical CO2 Emission Trends by Nation
  
 More than ever consumers are demanding their products & services minimize pollution harmful to our planet. 
 Companies like Microsoft, Starbucks, Adidas, and Jetblue have all made carbon neutral commitments in the next 5-10 years. 
@@ -13,12 +13,12 @@ There isn’t a more important time to prioritize clean energy as businesses re-
 
 ![](https://github.com/lsebahar/CO2GlobalEmissions-Visualization/blob/master/levi_test/static/images/Annotation%202020-06-15%20182003.png)
 
-## json data Fossil Fuels since 1751, By Nation 
+## JSON Data: Fossil Fuels since 1751, By Nation 
 ![](https://github.com/lsebahar/CO2GlobalEmissions-Visualization/blob/master/levi_test/static/images/Annotation%202020-06-15%20204430.png)
 
 ![](https://github.com/lsebahar/CO2GlobalEmissions-Visualization/blob/master/levi_test/static/images/fieldnames.png)
 
-## Industrial Powers over Time , USA CHINA U.K
+## Industrial Powers over Time: China, USA, & the United Kingdom
 
 Emissions have generally increased over time, with minor decreased emissions around WW2 in 1944 and the financial crisis of 2009. Coming out of both instances emissions increased again.
 
