@@ -1,4 +1,12 @@
-# UCSD Data Science & Visualization: Project-2
+# UCSD Data Science & Visualization: Project 2
+
+## Project Requirements:
+
+- Tell a story with data visualizations
+- Includes a Python Flask-powered RESTful API, HTML/CSS, JavaScript, and at least one database
+- Includes a data set with over 100 records
+- Includes user-driven interaction
+
 ## OBJECTIVE: Understand Historical CO2 Emission Trends by Nation
  
 More than ever consumers are demanding their products & services minimize pollution harmful to our planet. 
